@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "244fde85-f534-47e5-a2c1-d22dbcb55788",
+		"name": "StudentCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetRequest",
+			"item": [
+				{
+					"name": "GetStudentList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e0174f71-ddac-4b40-895e-fcde097c802b",
+								"exec": [
+									"",
+									"pm.test(\"Verify Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "44ee73a3-77d3-4ffe-a831-3276b73a819f",
+								"exec": [
+									"console.log(\"Start API testing\");",
+									"console.log(\"Hello World!!\");",
+									"",
+									"",
+									"let varUrl = pm.variables.get(\"url\");",
+									"console.log(\"The value for url is ==>\"+varUrl);",
+									"",
+									"pm.variables.set(\"name\",\"POSTMAN\");",
+									"",
+									"console.log(pm.variables.get(\"name\"));",
+									"",
+									"let globalVar = pm.globals.get(\"Env\");",
+									"console.log(\"The global url is: \"+globalVar);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/student/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSingleUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a939a9ad-602d-4f58-b152-1a07ad077abe",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/student/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student",
+								"1"
+							]
+						},
+						"description": "To get only single user base on their ID"
+					},
+					"response": []
+				}
+			],
+			"description": "All the get Request inside of that get folder",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PostRequest",
+			"item": [
+				{
+					"name": "StudentRegister",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f2e828f-d522-4417-8806-90ec5599f5e7",
+								"exec": [
+									"pm.test(\"Verify Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"{{name}}\",\n    \"lastName\": \"{{surname}}\",\n    \"email\": \"{{email}}\",\n    \"programme\": \"{{program}}\",\n    \"courses\": [\n        \"API\",\n        \"Selenium\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/student",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"student"
+							]
+						},
+						"description": "To create one student"
+					},
+					"response": []
+				}
+			],
+			"description": "All are post request inside folder",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "43bd11f2-a611-4109-9669-b3ca776aeaa1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "5882ac0f-cf18-4b31-948c-76df001992f0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "065c22f4-b319-4792-ae58-0fb6f37388ab",
+			"key": "url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
